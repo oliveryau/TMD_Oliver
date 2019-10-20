@@ -1,0 +1,276 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Template.master.cs" Inherits="TMDWeb.Template" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Targeted Marketing Display Administration">
+    <meta name="author" content="NYP SIT">
+    <!--w3 Schools css-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!--Fusion Chart-->
+    <script type="text/javascript" src="js/fusioncharts.js"></script>
+    <!--Fusion Chart CSS-->
+      <link href="css/SampleStyleSheet.css" rel="stylesheet" />
+    <!--some stuff-->
+      <!-- Step 1 - Include the fusioncharts core library -->
+    <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+    <!-- Step 2 - Include the fusion theme -->
+    <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+
+<!--mapbox api-->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.js'></script>
+      <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.css' type='text/css' />
+  <script src='https://api.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.css' rel='stylesheet' />
+    <!- -->
+ <!-- choose a theme file -->
+<link rel="stylesheet" href="css/theme.default.css">
+<!-- load jQuery and tablesorter scripts -->
+
+<script type="text/javascript" src="js/jquery.tablesorter.js"></script>
+
+<!-- tablesorter widgets (optional) -->
+<script type="text/javascript" src="js/jquery.tablesorter.widgets.js"></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.css' rel='stylesheet' />
+    <title>Targeted Marketing Display Administration</title>
+    <!-- Custom Pagination CSS-->
+    <link href="css/newgridview.css" rel="stylesheet" type="text/css"/>
+
+    <!--Google maps api-->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+    <!-- required stuff-->
+    <!-- required -->
+<script type="text/javascript" src="js/jquery.js"></script>
+<!-- optional -->
+<script type="text/javascript" src="js/jquery.shadow.js"></script>
+<script type="text/javascript" src="js/jquery.ifixpng.js"></script>
+<script type="text/javascript" src="js/jquery.fancyzoom.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/sb-admin-2.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="js/metisMenu.min.js"></script>
+    <!-- jQuery ui JavaScript -->
+    <script src="js/jquery-ui.js"></script>
+    <!-- Custom fonts for fontawesome(DONT TOUCH)-->
+     <link href="Content/fontawesome-free-5.9.0-web/css/all.css" rel="stylesheet">
+
+    <!--Import jquery-->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script> 
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- MetisMenu CSS -->
+    <link href="css/metisMenu.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!---jQuery ui CSS--->
+    <link href="css/jquery-ui.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <style type="text/css">
+        .welcome-admin {
+            font-size: large;
+            text-align: center;
+        }
+
+        #cancerNav {
+            margin-bottom: -1px;
+        }
+    </style>
+</head>
+<body>
+
+        <div id="wrapper">
+            <!-- Admin Side Navigation -->
+            <div runat="server" id="adminDiv" >
+                <!-- Admin Navigation -->
+
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" id="cancerNav" runat="server">
+                    
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="ProfileInfo.aspx" style="color: white; font-size: 25px">Targeted Marketing Display</a>
+                    </div>
+                    <!-- /.navbar-header -->
+
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" runat="server" onserverclick="logout_click" causesValidation="false">Logout <i class="fa fa-sign-out fa-fw" ></i></a>
+                            <!-- /.dropdown-user -->
+                        </li>
+                        <!-- /.dropdown -->
+                    </ul>
+                    <!-- /.navbar-top-links -->
+                    
+
+                    <div class="navbar-default sidebar" role="navigation" >
+                        <div class="sidebar-nav navbar-collapse" runat="server" id="cancerDiv">
+                            <ul class="nav" id="side-menu1">
+                                <li>
+                                    <div class="auto-style1">
+                                        <!--user welcome-->
+                                        <br />
+                                        <span class="welcome-admin" style="color: #435058;">Welcome</span>
+                                        <br />
+                                        <span class="welcome-admin" style="color: #435058;">
+                                            <strong><asp:Label runat="server" ID="lbAdminName"></asp:Label></strong> </span>
+                                        <br />
+                                        <br />
+                                        <!-- /input-group -->
+                                    </div>
+                                </li>
+   <!--order of modules to put on sidebar     1)profile2)user3)company4)bblocation5)adv6)feedback-->
+
+                         <!--CRUD-->
+
+                        <li>
+                            <a href="ProfileInfo.aspx"><i class="fa fa-user fa-fw"></i> My Profile </a>
+                        </li>
+
+                        <li>
+                            <a href="UserList.aspx"><i class="fas fa-users fa-fw"></i> Users </a>
+                        </li>
+            
+                        <li>                        
+                            <a href="CompanyList.aspx"><i class="fa fa-building fa-fw"></i> Companies </a>
+                        </li>
+
+                        <li>
+                            <a href="BillboardList.aspx"><i class="fa fa-location-arrow fa-fw"></i> Billboards </a>
+                        </li>
+
+                        <li>
+                            <a href="AdvertList.aspx"><i class="fa fa-sitemap fa-fw"></i> Advertisements </a>
+                        </li>
+        
+                        <li>
+                            <a href="AdvertFeedback.aspx"><i class="fa fa-lightbulb-o fa-fw"></i> Feedback </a> 
+                        </li>
+
+                        <li>
+                            <a href="FAQ.aspx"><i class="fa fa-question-circle-o fa-fw"></i> FAQ </a>
+                        </li>
+
+                        <li>
+                            <a href="mailto:tmdboss2019@gmail.com?Subject=Feedback%20about%20Targeted%20Marketing%20Display"><i class="fa fa-send-o fa-fw"></i> Email Us </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+        <!--/adminDiv-->
+       </div>
+      
+        <!--end of admin nav-->
+
+
+            <!--User Navigation-->
+            <div runat="server" id="userDiv" >
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: -1px;" id="stupidNav" runat="server">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="ProfileInfo.aspx" style="color: white; font-size: 25px">Targeted Marketing Display</a>
+                    </div>
+                    <!-- /.navbar-header -->
+
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" runat="server" onserverclick="logout_click" causesValidation="false">Logout <i class="fa fa-sign-out fa-fw" ></i></a>
+                            <!-- /.dropdown-user -->
+                        </li>
+                        <!-- /.dropdown -->
+                    </ul>
+                    <!-- /.navbar-top-links -->
+
+
+
+
+                    <!--User Sidebar-->
+                    <div class="navbar-default sidebar" role="navigation" >
+                        <div class="sidebar-nav navbar-collapse" id="stupidDiv" runat="server">
+                            <ul class="nav" id="side-menu2">
+                                <li>
+                                    <div class="auto-style1">
+                                        <!--user welcome-->
+                                        <br />
+                                        <span class="welcome-admin" style="color: #435058;">Welcome</span>
+                                        <br />
+                                        <span class="welcome-admin" style="color: #435058;">
+                                            <strong><asp:Label runat="server" ID="lbUserName"></asp:Label></strong>
+                                        </span>
+                                        <br />
+                                        <br />
+                                        <!-- /input-group -->
+                                    </div>
+                                </li>
+
+                        <li>
+
+                            <a href="ProfileInfo.aspx"><i class="fa fa-user fa-fw"></i> My Profile </a>
+                        </li>
+
+                        <li>
+                            <a href="AdvertList.aspx"><i class="fa fa-sitemap fa-fw"></i> Advertisements </a>
+                        </li>
+
+                        <li>
+                            <a href="AdvertFeedback.aspx"><i class="fa fa-lightbulb-o fa-fw"></i> Feedback </a>
+                        </li>
+
+                        <li>
+                            <a href="FAQ.aspx"><i class="fa fa-question-circle-o fa-fw"></i> FAQ</a>
+                        </li>
+
+                        <li>
+                            <a href="mailto:tmdboss2019@gmail.com?Subject=Feedback%20about%20Targeted%20Marketing%20Display"><i class="fa fa-send-o fa-fw"></i> Email Us</a>
+                        </li>
+                            <!-- /.nav-first-level -->
+                        </div>
+                        <!-- /.sidebar-collapse -->
+                    </div>
+                    <!-- /.navbar-static-side -->
+                </nav>
+            </div>
+            <!--end of user nav bar-->
+
+            <div id="page-wrapper" >
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+            </div>
+        </div>
+  
+</body>
+</html>
