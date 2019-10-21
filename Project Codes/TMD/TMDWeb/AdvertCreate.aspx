@@ -224,7 +224,7 @@
             <div class="col-lg-12">
                 <asp:Button ID="btnBack" class="btn btn-primary nextBtn pull-left" runat="server" Text="Back" onclick="btnBack_User" causesValidation="false"/>
 
-                <asp:Button ID="Button1" class="btn btn-primary nextBtn pull-right" runat="server" Text="Confirm" OnClick="ButtonConfirm_Click"/>
+                <asp:Button ID="Button1" class="btn btn-primary nextBtn pull-right" runat="server" Text="Create" OnClick="ButtonConfirm_Click"/>
             </div>
         </div>
         
