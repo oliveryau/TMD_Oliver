@@ -73,15 +73,15 @@
             for (var i = 0; i < inputList.length; i++) {
                  var row = inputList[i].parentNode.parentNode;
                 if (inputList[i].type == "checkbox" && objRef != inputList[i]) {
-                     if (objRef.checked) {
-                       inputList[i].checked = true;
-                     }
-                     else {
-                         inputList[i].checked = false;
-                     }
-                 }
-             }
-         }
+                    if (objRef.checked) {
+                    inputList[i].checked = true;
+                    }
+                    else {
+                        inputList[i].checked = false;
+                    }
+                }
+            }
+        }
 
      function Check_Click(objRef) {
          var row = objRef.parentNode.parentNode;
@@ -403,16 +403,16 @@
                                 <div style="width: 100%; height: 400px; overflow: scroll">
                                     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" DataKeyNames="BillboardID" 
                                         DataSourceID="SqlDataSource2" AllowPaging="False" Width="100%" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3">
-                                         <AlternatingRowStyle BackColor="#CCCCCC" />
+                                        <AlternatingRowStyle BackColor="#CCCCCC" />
                                         <Columns>                                         
-                                           <asp:TemplateField>
-                                               <HeaderTemplate>
-                                                   <asp:CheckBox ID="checkboxSelectAll"  onclick="checkAll(this);" runat="server" />
-                                               </HeaderTemplate>
+                                            <asp:TemplateField>
+                                                <HeaderTemplate>
+                                                    <asp:CheckBox ID="checkboxSelectAll"  onclick="checkAll(this);" runat="server" />
+                                                </HeaderTemplate>
                                                 <ItemTemplate>
-                                                   <asp:Checkbox ID="CheckBoxSelector" onclick="Check_Click(this);"  runat="server" />
-                                               </ItemTemplate>                                            
-                                           </asp:TemplateField>
+                                                    <asp:Checkbox ID="CheckBoxSelector" onclick="Check_Click(this);"  runat="server" />
+                                                </ItemTemplate>                                            
+                                            </asp:TemplateField>
                                               <asp:TemplateField visible="false">
                                         <ItemTemplate>
                                             <asp:Label runat="server" visible="false"  ID="lb_BillboardID" Text='<%# Bind("BillboardID") %>'></asp:Label>
@@ -448,8 +448,6 @@
                 <asp:AsyncPostBackTrigger ControlID="btnRun" EventName="Click" />
             </Triggers>
      </asp:UpdatePanel>
-
-
 
                                     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Targeted_Marketing_DisplayConnectionString %>" 
                               FilterExpression="BillboardCode LIKE '%{0}%' OR Address LIKE '%{0}%' OR convert(Latitude,'System.String') LIKE '%{0}%' OR convert(Longtitude,'System.String') LIKE '%{0}%'"

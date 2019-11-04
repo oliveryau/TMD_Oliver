@@ -379,28 +379,23 @@ namespace targeted_marketing_display
 
             billboardDisplayTB.Text = "";
             foreach (GridViewRow gvr in GridView1.Rows)
-
             {
                 if (gvr.RowType == DataControlRowType.DataRow)
                 {
-                    
                     CheckBox cb = (CheckBox)(gvr.FindControl("CheckBoxSelector"));
                     if (cb.Checked == true)
                     {
                        // Label bblabel = (Label)gvr.FindControl("lb_BillboardID");
-                        billboardDisplayTB.Text = billboardDisplayTB.Text + "," +gvr.Cells[2].Text;
-                       
-                      //  ListOfID.Add(Convert.ToInt32(bblabel.Text));
-
+                        billboardDisplayTB.Text = billboardDisplayTB.Text + ", " + gvr.Cells[2].Text;
+                       //  ListOfID.Add(Convert.ToInt32(bblabel.Text));
                     }
                 }
             }
 
             if (billboardDisplayTB.Text != "")
             {
-                billboardDisplayTB.Text = (billboardDisplayTB.Text).Substring(1); // for the comma
+                billboardDisplayTB.Text = (billboardDisplayTB.Text).Substring(1); 
             }
-
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "hideModal();$('.modal-backdrop').remove();", true);
         }
 

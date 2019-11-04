@@ -30,7 +30,12 @@
             width: 5px;
             text-align: center;
         }
-         
+        
+        @media only screen and (max-width: 860px) {
+            .HideInMobile {
+                display: none;
+            }
+        }
     </style>
 
   
@@ -108,7 +113,7 @@
                     <div class="col-lg-6">
                         <div class="input-group custom-search-form" style="width: 50%">
                             <div style="padding: 20px; float: left; width:30%;">
-                                <p class="input-group" style="width:350px;margin-left:-20px;">
+                                <p class="input-group" style="width:270px;margin-left:-20px;">
                                     <asp:TextBox ID="tbSearch" class="form-control" runat="server" placeholder="Search..."></asp:TextBox>
                                     <%--<input type="submit" id="btSubmit" runat="server" />--%>
                                     <span class="input-group-btn" >
@@ -146,15 +151,15 @@
                                     <asp:BoundField DataField="BillboardCode" HeaderText="Billboard Code" SortExpression="BillboardCode">
                                     </asp:BoundField>
 
-                                    <asp:BoundField DataField="Latitude" HeaderText="Latitude" SortExpression="Latitude">
+                                    <asp:BoundField DataField="Latitude" HeaderText="Latitude" SortExpression="Latitude" HeaderStyle-CssClass="HideInMobile" ItemStyle-CssClass="HideInMobile">
                                          <ItemStyle HorizontalAlign="Center" />
                                     </asp:BoundField>
 
-                                    <asp:BoundField DataField="Longtitude" HeaderText="Longtitude" SortExpression="Longtitude">
+                                    <asp:BoundField DataField="Longtitude" HeaderText="Longtitude" SortExpression="Longtitude" HeaderStyle-CssClass="HideInMobile" ItemStyle-CssClass="HideInMobile">
                                           <ItemStyle HorizontalAlign="Center" />
                                     </asp:BoundField>
 
-                                    <asp:BoundField DataField="Address" HeaderText="Address" SortExpression="Address" ReadOnly="True">
+                                    <asp:BoundField DataField="Address" HeaderText="Address" SortExpression="Address" ReadOnly="True" HeaderStyle-CssClass="HideInMobile" ItemStyle-CssClass="HideInMobile">
                                     </asp:BoundField>
 
 
@@ -174,7 +179,7 @@
                                     </itemtemplate>
                                         <ControlStyle Height="50%" />
                                         <HeaderStyle HorizontalAlign="Center" Wrap="False" />
-                                        <ItemStyle Width="5%" HorizontalAlign="Center" Wrap="True" VerticalAlign="Middle" />
+                                        <ItemStyle Width="5px" HorizontalAlign="Center" Wrap="True" VerticalAlign="Middle" />
                                   </asp:templatefield>
 
 
@@ -191,7 +196,7 @@
                                          </itemtemplate>
                                         <ControlStyle Height="50%" />
                                         <HeaderStyle HorizontalAlign="Center" Wrap="False" />
-                                        <ItemStyle Width="5%" HorizontalAlign="Center" Wrap="True" VerticalAlign="Middle" />
+                                        <ItemStyle Width="5px" HorizontalAlign="Center" Wrap="True" VerticalAlign="Middle" />
                                   </asp:templatefield>
                                     
 
@@ -216,7 +221,7 @@
                                          </itemtemplate>
                                         <ControlStyle Height="50%" />
                                         <HeaderStyle HorizontalAlign="Center" Wrap="False" />
-                                        <ItemStyle Width="5%" HorizontalAlign="Center" Wrap="True" VerticalAlign="Middle" />
+                                        <ItemStyle Width="5px" HorizontalAlign="Center" Wrap="True" VerticalAlign="Middle" />
                                   </asp:templatefield>
                                     
                                    

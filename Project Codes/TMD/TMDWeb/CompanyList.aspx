@@ -4,6 +4,12 @@
         .auto-style16 {
             text-align: right;
         }
+
+        @media only screen and (max-width: 968px) {
+            .HideInMobile {
+                display: none;
+            }
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -76,7 +82,7 @@
                 <div class="col-lg-12">
                     <div class="input-group custom-search-form" style="width: 50%">
                     <d style="padding: 20px; float: left; width:30%;">
-                        <p class="input-group" style="width:350px;margin-left:-20px;">
+                        <p class="input-group" style="width:270px;margin-left:-20px;">
                         <asp:TextBox ID="tbSearch" class="form-control" runat="server" placeholder="Search..."></asp:TextBox>
                         <%--<input type="submit" id="btSubmit" runat="server" />--%>
                         <span class="input-group-btn" >
@@ -91,7 +97,7 @@
                     <div class="col-lg-12">
                         <div class="table-responsive">                       
 
-                          <%--                        <table class="table table-striped table-bordered table-hover" style="width: 100%">--%>
+                          <%--<table class="table table-striped table-bordered table-hover" style="width: 100%">--%>
                             <asp:GridView ID="GridView3" CssClass="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" Height="100%" Width="100%"
                                 BackColor="White" BorderColor="#999999" BorderStyle="Solid"
                                 BorderWidth="1px" CellPadding="3" DataSourceID="SqlDataSource1" AllowPaging="True" OnPreRender="GridView3_PreRender" 
@@ -111,10 +117,10 @@
                                     <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name">
                                         <ControlStyle Height="50%" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                        <ItemStyle Width="50%" Wrap="False" VerticalAlign="Middle" HorizontalAlign="Left" />
+                                        <ItemStyle Width="50%" Wrap="True" VerticalAlign="Middle" HorizontalAlign="Left" />
                                     </asp:BoundField>
 
-                                    <asp:BoundField DataField="CodeDesc" HeaderText="Industry" SortExpression="CodeValue" >
+                                    <asp:BoundField DataField="CodeDesc" HeaderText="Industry" SortExpression="CodeValue" ItemStyle-CssClass="HideInMobile" HeaderStyle-CssClass="HideInMobile">
                                         <ControlStyle Height="50%" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         <ItemStyle Width="25%" Wrap="False" VerticalAlign="Middle" HorizontalAlign="Center" />
@@ -129,7 +135,7 @@
                                         </ItemTemplate>
                                         <ControlStyle Height="50%" />
                                         <HeaderStyle HorizontalAlign="Center" Wrap="False" />
-                                        <ItemStyle Width="5%" HorizontalAlign="Center" Wrap="True" VerticalAlign="Middle" />
+                                        <ItemStyle Width="5px" HorizontalAlign="Center" Wrap="True" VerticalAlign="Middle" />
                                           </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Update">
@@ -140,7 +146,7 @@
                                         </ItemTemplate>
                                         <ControlStyle Height="50%" />
                                         <HeaderStyle HorizontalAlign="Center" Wrap="False" />
-                                        <ItemStyle Width="5%" HorizontalAlign="Center" Wrap="False" VerticalAlign="Middle" />
+                                        <ItemStyle Width="5px" HorizontalAlign="Center" Wrap="False" VerticalAlign="Middle" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Delete">
@@ -151,7 +157,7 @@
                                         </ItemTemplate>
                                         <ControlStyle Height="50%" />
                                         <HeaderStyle HorizontalAlign="Center" Wrap="False" />
-                                        <ItemStyle Width="5%" HorizontalAlign="Center" Wrap="True" VerticalAlign="Middle" />
+                                        <ItemStyle Width="5px" HorizontalAlign="Center" Wrap="True" VerticalAlign="Middle" />
                                         </asp:TemplateField>
 
                                 </Columns>

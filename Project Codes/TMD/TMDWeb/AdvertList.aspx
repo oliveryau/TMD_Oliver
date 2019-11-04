@@ -90,6 +90,19 @@ body
   cursor: pointer;
 }
 
+    @media only screen and (max-width: 1100px) {
+        .HideInMobile {
+            display: none;
+        }
+
+        .FileSize {
+            max-height: 80px;
+            max-width: 80px;
+        }
+        .HeaderSize {
+            max-width: 80px;
+        }
+    }
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -228,7 +241,7 @@ function HideDiv() {
             <div class="col-lg-12">
                 <div class="input-group custom-search-form" style="width: 50%">
                     <div style="padding: 20px; float: left; width:30%;">
-                        <p class="input-group" style="width:350px;margin-left:-20px;">
+                        <p class="input-group" style="width:270px;margin-left:-20px;">
                         <asp:TextBox ID="txtSearch" class="form-control" runat="server" placeholder="Search..."></asp:TextBox>
                         <%--<input type="submit" id="btSubmit" runat="server" />--%>
                         <span class="input-group-btn" >
@@ -284,7 +297,7 @@ function HideDiv() {
                             runat="server" AutoGenerateColumns="False" Width="100%" 
                             BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px"
                             CellPadding="3" AllowPaging="True" HorizontalAlign="Center" DataKeyNames="AdvID" 
-                            OnPreRender="GridView1_PreRender" ForeColor="Black" GridLines="Vertical" OnRowDataBound="GridView1_RowDataBound"  cellspacing="5" PageSize="3"
+                            OnPreRender="GridView1_PreRender" ForeColor="Black" GridLines="Vertical" OnRowDataBound="GridView1_RowDataBound"  cellspacing="5" PageSize="5"
                             AllowSorting="True" EnableSortingAndPagingCallbacks="true" CurrentSortField="StartDate" CurrentSortDirection="ASC"  OnSorting="GridView1_Sorting" OnRowCreated="GridView1_RowCreated" 
                             OnPageIndexChanging="GridView1_PageIndexChanging">
                             <AlternatingRowStyle HorizontalAlign="Center" BackColor="#CCCCCC" />
@@ -295,104 +308,64 @@ function HideDiv() {
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-
-
-                                 
                                     <asp:TemplateField visible="false">
                                     <ItemTemplate>
                                         <asp:Label runat="server" visible="false"  ID="AdvertItem" Text='<%# Bind("Item") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-
-                               
-                                <asp:TemplateField HeaderText="Advertisement">
-                                       
+                                <asp:TemplateField HeaderText="Advertisement" HeaderStyle-CssClass="HeaderSize" ItemStyle-CssClass="FileSize" ControlStyle-CssClass="FileSize">
                                     <ItemTemplate>
-                                          
-                                        
-                                    <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("Item") %>' OnClientClick="return LoadDiv(this.src);" 
-                                        Visible='<%# Eval("ItemType").ToString() =="image" %>' ClientIDMode="static" style="display:block; object-fit: cover;"   />
+                                        <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("Item") %>' OnClientClick="return LoadDiv(this.src);" 
+                                        Visible='<%# Eval("ItemType").ToString() =="image" %>' ClientIDMode="static" style="display:block; object-fit: cover;" CssClass="FileSize"/>
                                     <div id="vidDiv" runat="server">
-                                    <video ClientIDMode="static" id="videoDog" width="200" height="200" runat="server" controls visible='<%# Eval("ItemType").ToString()!="image" %>'>  
+                                    <video ClientIDMode="static" id="videoDog" runat="server" controls visible='<%# Eval("ItemType").ToString()!="image" %>' style="display:block; object-fit: cover;" class="FileSize">  
                                         <source runat="server" src='<%#Eval("Item")%>' type="video/mp4" visible='<%# Eval("ItemType").ToString()!="image" %>' />  
                                     </video>  
                                         </div>
                                               
-                                        </ItemTemplate>
-                                    <controlstyle width="200px" height="200px"  />
-                                    <ItemStyle Width="200px" height="200px" />
-                                    </asp:TemplateField>
-                             
+                                    </ItemTemplate>
+                                    <controlstyle width="100px" height="100px"  />
+                                    <ItemStyle Width="120px" height="120px" />
+                                </asp:TemplateField>
 
-                                             
-
-                                <asp:BoundField DataField="CompanyName" HeaderText="Company" SortExpression="CompanyName"></asp:BoundField>
+                                <asp:BoundField DataField="CompanyName" HeaderText="Company" SortExpression="CompanyName" HeaderStyle-CssClass="HideInMobile" ItemStyle-CssClass="HideInMobile"></asp:BoundField>
+                                <asp:BoundField DataField="AdvertName" HeaderText="Name" SortExpression="AdvertName" HeaderStyle-CssClass="HideInMobile" ItemStyle-CssClass="HideInMobile"></asp:BoundField>
+                                <asp:BoundField DataField="ItemType" HeaderText="Type" SortExpression="ItemType" HeaderStyle-CssClass="HideInMobile" ItemStyle-CssClass="HideInMobile"></asp:BoundField>
+                                <asp:BoundField DataField="StartDate" HeaderText="Start Date" SortExpression="StartDate" DataFormatString="{0:D}" HeaderStyle-CssClass="HideInMobile" ItemStyle-CssClass="HideInMobile"></asp:BoundField>
+                                <asp:BoundField DataField="EndDate" HeaderText="End Date" SortExpression="EndDate" DataFormatString="{0:D}" HeaderStyle-CssClass="HideInMobile" ItemStyle-CssClass="HideInMobile"></asp:BoundField>
                                     
-                                    <asp:BoundField DataField="AdvertName" HeaderText="Name" SortExpression="AdvertName"></asp:BoundField>
-                                    
-                                <asp:BoundField DataField="ItemType" HeaderText="Type" SortExpression="ItemType"></asp:BoundField>
-                               
-                                <asp:BoundField DataField="StartDate" HeaderText="Start Date" SortExpression="StartDate" DataFormatString="{0:D}"></asp:BoundField>
-                                <asp:BoundField DataField="EndDate" HeaderText="End Date" SortExpression="EndDate" DataFormatString="{0:D}"></asp:BoundField>
-                                    
-
-                                    <asp:templatefield headertext="View">
+                                <asp:templatefield headertext="View">
                                     <itemtemplate>
-
                                         <asp:LinkButton ID="viewBtn" OnCommand="infoBtn_Command" runat="server" CommandName="AdInfo" CommandArgument='<%#((GridViewRow) Container).RowIndex %>'>
-
-
-                                    <i class="fas fa-eye"></i>
-
-                                            
-
-
-                                    </asp:LinkButton>
-                                      
-                                </itemtemplate>
+                                            <i class="fas fa-eye"></i>
+                                        </asp:LinkButton>
+                                    </itemtemplate>
                                     <ControlStyle Height="50%" />
                                     <HeaderStyle HorizontalAlign="Center" Wrap="False" />
-                                    <ItemStyle Width="5%" HorizontalAlign="Center" Wrap="True" VerticalAlign="Middle" />
+                                    <ItemStyle width="5px" HorizontalAlign="Center" Wrap="True" VerticalAlign="Middle" />
                                 </asp:templatefield>
-
 
                                 <asp:templatefield headertext="Update">
                                     <itemtemplate>
-                                 
-                                    <asp:LinkButton ID="editBtn" OnCommand="editBtn_Command" runat="server" CommandName="AdvertUpdate" CommandArgument='<%#((GridViewRow) Container).RowIndex %>'>
-
-                                    <i class="fa fa-edit"></i>
-                                            
-
+                                        <asp:LinkButton ID="editBtn" OnCommand="editBtn_Command" runat="server" CommandName="AdvertUpdate" CommandArgument='<%#((GridViewRow) Container).RowIndex %>'>
+                                            <i class="fa fa-edit"></i>
                                         </asp:LinkButton>
-                                  
-                                        </itemtemplate>
+                                    </itemtemplate>
                                     <ControlStyle Height="50%" />
                                     <HeaderStyle HorizontalAlign="Center" Wrap="False" />
-                                    <ItemStyle Width="5%" HorizontalAlign="Center" Wrap="True" VerticalAlign="Middle" />
+                                    <ItemStyle width="5px" HorizontalAlign="Center" Wrap="True" VerticalAlign="Middle" />
                                 </asp:templatefield>
                                     
-
                                 <asp:templatefield headertext="Delete">
-
-                                         
                                     <itemtemplate>
-
-                                            
-                                    <asp:LinkButton ID="DeleteBtn"  OnClientClick="return deleteFunction();"  OnCommand="btnDelete_Command" runat="server" CommandName="DeleteAdMessage" CommandArgument='<%#((GridViewRow) Container).RowIndex %>'>
-
+                                        <asp:LinkButton ID="DeleteBtn"  OnClientClick="return deleteFunction();"  OnCommand="btnDelete_Command" runat="server" CommandName="DeleteAdMessage" CommandArgument='<%#((GridViewRow) Container).RowIndex %>'>
                                             <i class="fa fa-trash"></i>
-                                             
-
-                                            </asp:LinkButton>
-                                      
-
-                                                                                                             
-                                        </itemtemplate>
+                                        </asp:LinkButton>
+                                    </itemtemplate>
                                     <ControlStyle Height="50%" />
                                     <HeaderStyle HorizontalAlign="Center" Wrap="False" />
-                                    <ItemStyle Width="5%" HorizontalAlign="Center" Wrap="True" VerticalAlign="Middle" />
+                                    <ItemStyle width="5px" HorizontalAlign="Center" Wrap="True" VerticalAlign="Middle" />
                                 </asp:templatefield>
 
                                  

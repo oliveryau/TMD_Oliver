@@ -31,6 +31,12 @@
     .pgr {
         background-color: black;
     }
+
+    @media only screen and (max-width: 850px) {
+        .HideInMobile {
+            display: none;
+        }
+    }
 </style>
 
 </asp:Content>
@@ -100,7 +106,7 @@
                 <div class="col-lg-12">
                     <div class="input-group custom-search-form">
                         <div style="padding: 20px; float: left; width:30%;">
-                            <p class="input-group" style="width:350px;margin-left:-20px;">
+                            <p class="input-group" style="width:270px;margin-left:-20px;">
                             <asp:TextBox ID="tbSearch" class="form-control" runat="server" placeholder="Search..."></asp:TextBox>
                             <%--<input type="submit" id="btSubmit" runat="server" />--%>
                             <span class="input-group-btn" >
@@ -121,7 +127,7 @@
             </div>
 
             <asp:GridView ID="gvUser" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" Height="100%" Width="100%" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" DataSourceID="SqlDataSource1"
-                AllowPaging="True"  ForeColor="Black" GridLines="Vertical" OnPageIndexChanging="gvUser_PageIndexChanging">
+                AllowPaging="True"  ForeColor="Black" GridLines="Vertical" OnPageIndexChanging="gvUser_PageIndexChanging" >
                                
                 <AlternatingRowStyle BackColor="#CCCCCC" />
                                
@@ -136,10 +142,10 @@
                         <ItemStyle Width="100px" Wrap="False" HorizontalAlign="Left"/>
                     </asp:BoundField>
 
-                    <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name"></asp:BoundField>
+                    <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" ></asp:BoundField>
                     <asp:BoundField DataField="CodeDesc" HeaderText="User Type" SortExpression="CodeDesc"></asp:BoundField>
-                    <asp:BoundField DataField="Expr1" HeaderText="Company" SortExpression="Expr1"></asp:BoundField>
-                    <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email"></asp:BoundField>
+                    <asp:BoundField DataField="Expr1" HeaderText="Company" SortExpression="Expr1" ItemStyle-CssClass="HideInMobile" HeaderStyle-CssClass="HideInMobile"></asp:BoundField>
+                    <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" ItemStyle-CssClass="HideInMobile" HeaderStyle-CssClass="HideInMobile"></asp:BoundField>
 
                     <asp:templatefield headertext="View">
                         <itemtemplate>

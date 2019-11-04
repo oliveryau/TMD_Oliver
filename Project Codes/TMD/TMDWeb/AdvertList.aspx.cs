@@ -240,8 +240,6 @@ namespace targeted_marketing_display
                 sda.SelectCommand = cmd;
                 sda.Fill(dt);
 
-
-
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
             }

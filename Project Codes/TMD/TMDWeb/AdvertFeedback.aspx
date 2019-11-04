@@ -24,7 +24,7 @@
         }
 
         .fontfont {
-            position: relative;
+            position: center;
             left: 710px;
             top: -20px
         }
@@ -66,61 +66,37 @@
             $('#VadModal2').modal('show');
         }
 
+        function hideModalAdv() {
+            $('#AdvModal').modal('hide');
+        }
     </script>
     <script type="text/javascript">
         function RadioCheckAdvert(rb) {
-
             var gv = document.getElementById("<%=gvAdv.ClientID%>");
-
             var rbs = gv.getElementsByTagName("input");
-
-
-
             var row = rb.parentNode.parentNode;
-
             for (var i = 0; i < rbs.length; i++) {
-
-                if (rbs[i].type == "radio") {
-
+                if (rbs[i].type == "checkbox") {
                     if (rbs[i].checked && rbs[i] != rb) {
-
                         rbs[i].checked = false;
-
                         break;
-
                     }
-
                 }
-
             }
-
         }
+
         function RadioCheckBillboard(rb) {
-
             var gv = document.getElementById("<%=gvBb.ClientID%>");
-
             var rbs = gv.getElementsByTagName("input");
-
-
-
             var row = rb.parentNode.parentNode;
-
             for (var i = 0; i < rbs.length; i++) {
-
-                if (rbs[i].type == "radio") {
-
+                if (rbs[i].type == "checkbox") {
                     if (rbs[i].checked && rbs[i] != rb) {
-
                         rbs[i].checked = false;
-
                         break;
-
                     }
-
                 }
-
             }
-
         }
 
         function CustomValidator1_ClientValidate(source,args)
@@ -133,9 +109,40 @@
             {
                 args.IsValid = false;
             }
-    
         }
 
+        function checkAll(objRef) {
+            var GridView = objRef.parentNode.parentNode.parentNode;
+            var inputList = GridView.getElementsByTagName("input");
+            for (var i = 0; i < inputList.length; i++) {
+                var row = inputList[i].parentNode.parentNode;
+                if (inputList[i].type == "checkbox" && objRef != inputList[i]) {
+                    if (objRef.checked) {
+                        inputList[i].checked = true;
+                    }
+                    else {
+                        inputList[i].checked = false;
+                    }
+                }
+            }
+        }
+
+        function Check_Click(objRef) {
+            var row = objRef.parentNode.parentNode;
+            var GridView = row.parentNode;
+            var inputList = GridView.getElementsByTagName("input");
+            for (var i = 0; i < inputList.length; i++) {
+                //var headerCheckBox = inputList[0];
+                var checked = true;
+                if (inputList[i].type == "checkbox") {
+                    if (!inputList[i].checked) {
+                        checked = false;
+                        break;
+                    }
+                }
+            }
+            //headerCheckBox.checked = checked;
+        }
     </script>
 </asp:Content>
 <asp:content id="Content2" contentplaceholderid="ContentPlaceHolder1" runat="server" clientidmode="Static">
@@ -177,7 +184,7 @@
 
             <br />
 
-             <!-- <div class="row">
+              <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label>Start Date: </label>
@@ -188,7 +195,6 @@
                 </div>
 
                 <div class="col-lg-6">
-
                     <div class="form-group">
                         <label>End Date: </label>
                         <label style="color: red">*</label>
@@ -198,30 +204,18 @@
                     </div>
                 </div>
              
-            </div> -->
+            </div> 
 
             <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">
                         <p style="font-weight:bold">Company: 
                         <label style="color: red">*</label></p>
-
                         <asp:DropDownList ID="ddlCom" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCom_SelectedIndexChanged" AutoPostBack="True" DataTextField="Name" DataValueField="Name"></asp:DropDownList>
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Targeted_Marketing_DisplayConnectionString %>" SelectCommand="SELECT [Name] FROM [Company] WHERE [Status] = 1 AND [Industry] NOT LIKE '0'"></asp:SqlDataSource>
                         <asp:RequiredFieldValidator ID="rfvCompany" runat="server" ControlToValidate="ddlCom" Display="Dynamic" InitialValue="<--Select A Company-->" ErrorMessage="Please select advertisement company" ForeColor="Red" ></asp:RequiredFieldValidator>
-
                     </div>
                 </div>
-
-                <!-- <div class="col-lg-6">
-                    <div class="form-group">
-                        <br /><br />
-                        <button type="button" id="selectbbbutton" class="btn btn-primary pull-right" data-toggle="modal" data-target="#BbModal" style="width: auto; margin-left: 30px;"> Select Billboards </button>
-
-                        <button type="button" id="ButtonAdvSelect" class="btn btn-primary pull-right" data-toggle="modal" data-target="#AdvModal" style="width: auto"> Select Advertisements </button>
-                        <%--<asp:Label runat="server" class="pull-right" Text=" OR/AND " Font-Bold="true"></asp:Label>--%>
-                    </div>
-                </div> -->
             </div>
                                           
          <%--  <asp:UpdatePanel ID="updatepanel3" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
@@ -238,9 +232,9 @@
                         <label style="color: red">*</label>
                         <asp:UpdatePanel ID="updatepanel1" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
                         <ContentTemplate>
-                        <asp:TextBox ID="advertTB" class="form-control" runat="server" placeholder="Search..." data-toggle="modal" data-target="#AdvModal" AutoCompleteType="Disabled" autocomplete="off"></asp:TextBox>
+                        <asp:TextBox ID="advertTB" class="form-control" runat="server" placeholder="Search..." data-toggle="modal" data-target="#AdvModal" AutoCompleteType="Disabled" autocomplete="off" AutoPostBack="true"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvAdvertisement" runat="server" ControlToValidate="advertTB" Display="Dynamic" ErrorMessage="Please select at least one advertisement" ForeColor="Red"></asp:RequiredFieldValidator>
-                        <br /><br />
+                        
                         </ContentTemplate>
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="addAdv" EventName="Click" />
@@ -248,7 +242,7 @@
                         </asp:UpdatePanel>
 
                         <!-- Advertisement Modal -->
-                        <div id="AdvModal" class="modal" role="dialog">
+                        <div id="AdvModal" class="modal fade" role="dialog">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -261,26 +255,27 @@
                                         <div class="input-group custom-search-form" style="width: 50%">
                                             <asp:textbox id="txtAdv" class="form-control" runat="server" placeholder="Search..."></asp:textbox>
                                             <span class="input-group-btn">
-                                                <button class="btn btn-default" runat="server" type="button" onserverclick="btnAdvSearch_OnClick">
+                                                <%--<button class="btn btn-default" runat="server" type="button" onserverclick="btnAdvSearch_OnClick">
                                                     <i class="fa fa-search"></i>
-                                                </button>
+                                                </button>--%>
+                                                <asp:LinkButton runat="server" class="btn btn-default" ID="btnRun" style="height:34px;" Text="<i class='fa fa-search'></i>" OnClick="btnAdvSearch_OnClick" CausesValidation="false"/>                        
                                             </span>
                                         </div>
 
-                                        <asp:UpdatePanel ID="updatepanel27" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                                        <asp:UpdatePanel  ID="updatepanel27" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true" >
                                             <ContentTemplate>
                                             <asp:GridView ID="gvAdv" runat="server" Visible="true" Style="margin-top: 5px;" AutoGenerateColumns="False" 
                                             CssClass="table table-bordered table-striped table-hover" OnRowDataBound="gvAdv_RowDataBound"
-                                            AllowPaging="true" PageSize="3" ForeColor="Black" GridLines="Vertical" Height="100%" Width="100%"
+                                            AllowPaging="true" overflow="scroll" PageSize="5" ForeColor="Black" GridLines="Vertical" Height="100%" Width="100%"
                                             BackColor="White" BorderColor="#999999" BorderStyle="Solid"
-                                            BorderWidth="1px" CellPadding="3" OnPageIndexChanging="gvAdv_PageIndexChanging" OnSorting="gvAdv_Sorting">
+                                            BorderWidth="1px" CellPadding="3"  OnPageIndexChanging="gvAdv_PageIndexChanging" OnSorting="gvAdv_Sorting">
                                             <AlternatingRowStyle BackColor="#CCCCCC" />
                                             <Columns>
-                                            <asp:TemplateField HeaderText="Select">
+                                            <asp:TemplateField>
                                                 <ItemTemplate>
-                                                    <asp:Checkbox ID="RowSelectorADV" runat="server" onclick="RadioCheckAdvert(this);" />
+                                                    <asp:Checkbox ID="RowSelectorADV" runat="server" onclick="Check_Click(this)"/>
                                                 </ItemTemplate>
-                                                <ItemStyle Width="3%" HorizontalAlign="Center" />
+                                                <ItemStyle HorizontalAlign="Center"/>
                                             </asp:TemplateField>
 
                                             <asp:TemplateField visible="false">
@@ -332,15 +327,17 @@
 
                                             </asp:GridView>
                                             </ContentTemplate>
+                                            <Triggers>
+                                                <asp:AsyncPostBackTrigger ControlID="addAdv" EventName="Click" />
+                                            </Triggers>
                                         </asp:UpdatePanel>
                                     </div>
                                     </div>
-                   
-                                    <div class="modal-footer">
-                                        <asp:LinkButton ID="addAdv" runat="server" CssClass="btn btn-primary" Text="Add" OnClick="addAdv_Click"/>
                                     </div>
-                     
-                                </div>
+                                    <div class="modal-footer">
+                                        <asp:Button runat="server" class="btn btn-default" ID="addAdv" Style="height: 34px;" Text="Add" OnClick="addAdv_Click" causesValidation="false" />
+                                        <asp:Button runat="server" class="btn btn-default" Text="Close" data-dismiss="modal" CausesValidation="false"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -380,9 +377,10 @@
                                 <div class="input-group custom-search-form" style="width: 50%">
                                     <asp:TextBox ID="txtBb" class="form-control" runat="server" placeholder="Search..." AutoCompleteType="Disabled" autocomplete="off"></asp:TextBox>
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default" runat="server" type="button" onserverclick="btnBbSearch_OnClick">
+                                        <%--<button class="btn btn-default" runat="server" type="button" onserverclick="btnBbSearch_OnClick">
                                             <i class="fa fa-search"></i>
-                                        </button>
+                                        </button>--%>
+                                        <asp:LinkButton runat="server" class="btn btn-default" ID="LinkButton1" style="height:34px;" Text="<i class='fa fa-search'></i>" OnClick="btnBbSearch_OnClick" CausesValidation="false"/>                        
                                     </span>
                                 </div>
                                 &nbsp
@@ -393,8 +391,9 @@
                                  <AlternatingRowStyle BackColor="#CCCCCC" />
                             <Columns>
                                 <asp:TemplateField HeaderText="Select">
-                                <ItemTemplate><asp:RadioButton ID="RowSelectorBB" runat="server" onclick="RadioCheckBillboard(this);" /></ItemTemplate>
-                                    <ItemStyle Width="3%" HorizontalAlign="Center" />
+                                <ItemTemplate>
+                                    <asp:CheckBox ID="RowSelectorBB" runat="server" onclick="Check_Click(this);" /></ItemTemplate>
+                                <ItemStyle Width="3%" HorizontalAlign="Center" />
                                 </asp:TemplateField>
                                 <asp:TemplateField visible="false">
                                     <ItemTemplate>
@@ -420,14 +419,15 @@
                             </asp:GridView>
                             </div>
                             </div>
+                            </div>
                             <div class="modal-footer">
                             <%--<asp:UpdatePanel ID="updatepanel2" runat="server">
                                 <ContentTemplate>--%>
-                            <asp:Button ID="addBb" runat="server" CssClass="btn btn-primary" Text="Add" OnClick="addBb_Click" autopostback="true"/>
+                                <asp:Button runat="server" class="btn btn-default" ID="addBb" Style="height: 34px;" Text="Add" OnClick="addBb_Click" causesValidation="false" />
+                                <asp:Button runat="server" class="btn btn-default" Text="Close" data-dismiss="modal" CausesValidation="false"/>
                             <%--</ContentTemplate>
                                 </asp:UpdatePanel>--%>
                             </div>
-                        </div>
                     </div>
                     </div>
                 </div>
@@ -451,7 +451,6 @@
                         <asp:Label ID="lblEmotion" runat="server" Text="Emotion"></asp:Label>
                         <br />
                         <asp:CustomValidator id="cvRadioButton" runat="server" Display="Dynamic" ErrorMessage="Please choose a chart type" ClientValidationFunction="CustomValidator1_ClientValidate" OnServerValidate="CustomValidator1_ServerValidate" ForeColor="Red" ></asp:CustomValidator>
-
                     </div>
                 </div>
 
@@ -463,10 +462,12 @@
                     </asp:UpdatePanel>--%>
             </div>
         
-            <div class="row" style="margin-top:30px">
+        <br /><br />
+
+            <div class="row">
                 <div class="col-lg-12">
                     <div class="form-group">
-                    <asp:Label ID="lblFbc" runat="server" Visible="false" Font-Size="X-Large" Font-Bold="true" CssClass="fontfont">Feedback Chart</asp:Label>
+                        <asp:Label ID="lblFbc" runat="server" Visible="false" Font-Size="X-Large" Font-Bold="true" CssClass="fontfont">Feedback Chart</asp:Label>
                     </div>
                 </div>
             </div>
