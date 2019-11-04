@@ -1,4 +1,4 @@
 # TMD_Oliver
-Targeted Marketing Display Web Repository
+This is my Targeted Marketing Display Web Repository
 
-Download the file as ZIP file or clone the project
+Feel free to clone my project
