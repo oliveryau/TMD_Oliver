@@ -184,7 +184,7 @@
 
             <br />
 
-              <div class="row">
+            <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label>Start Date: </label>
@@ -203,7 +203,6 @@
                         <asp:RequiredFieldValidator ID="rfvEndDate" runat="server" ControlToValidate="endDateTB" Display="Dynamic" ErrorMessage="Please select an end date" ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
                 </div>
-             
             </div> 
 
             <div class="row">
@@ -217,10 +216,6 @@
                     </div>
                 </div>
             </div>
-                                          
-         <%--  <asp:UpdatePanel ID="updatepanel3" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
-
-                            <ContentTemplate>--%>
 
             <br />
 
@@ -432,36 +427,29 @@
                     </div>
                 </div>
             </div>
-                    
+
             <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
+                <div class="col-lg-6" id="ChartSelectDiv" runat="server">
+                    <div class="form-group" >
                         <asp:Label runat="server" Text="Chart Type: " Font-Bold="true"></asp:Label><label style="color: red">*</label>
                         <br />
                         <asp:RadioButton ID="rbNo" runat="server" OnCheckedChanged="rbNo_CheckedChanged" AutoPostBack="true"/> 
                         <asp:Label ID="lblNo" runat="server" Text="No. Of Pax"></asp:Label>
-                        &nbsp
+                        <br />
                         <asp:RadioButton ID="rbAge" runat="server" OnCheckedChanged="rbAge_CheckedChanged" AutoPostBack="true"/> 
                         <asp:Label ID="lblAge" runat="server" Text="Age"></asp:Label>
-                        &nbsp
+                        <br />
                         <asp:RadioButton ID="rbGender" runat="server" OnCheckedChanged="rbGender_CheckedChanged" AutoPostBack="true"/>
                         <asp:Label ID="lblGender" runat="server" Text="Gender"></asp:Label>
-                        &nbsp
+                        <br />
                         <asp:RadioButton ID="rbEmotion" runat="server" OnCheckedChanged="rbEmotion_CheckedChanged" AutoPostBack="true"/> 
                         <asp:Label ID="lblEmotion" runat="server" Text="Emotion"></asp:Label>
                         <br />
                         <asp:CustomValidator id="cvRadioButton" runat="server" Display="Dynamic" ErrorMessage="Please choose a chart type" ClientValidationFunction="CustomValidator1_ClientValidate" OnServerValidate="CustomValidator1_ServerValidate" ForeColor="Red" ></asp:CustomValidator>
                     </div>
-                </div>
-
-                
-                <%--</ContentTemplate>
-                    <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="addAdv" EventName="Click" />
-                    </Triggers>
-                    </asp:UpdatePanel>--%>
+                </div>                
             </div>
-        
+                            
         <br /><br />
 
             <div class="row">

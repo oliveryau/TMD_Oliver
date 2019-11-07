@@ -31,9 +31,9 @@ namespace targeted_marketing_display
                 Session["modalId"] = modalId;
                 PopulateDdl();
                 ddlCom.Items.Insert(0, new System.Web.UI.WebControls.ListItem("<--Select A Company-->"));
-
             }
             CompareValidator2.ValueToCompare = DateTime.Now.ToShortDateString();
+            // ChartSelectDiv.Visible = false;
         }
         //cheeefang was here
         //string DBConnect = ConfigurationManager.ConnectionStrings["Targeted_Marketing_DisplayConnectionString"].ConnectionString;
@@ -331,21 +331,18 @@ namespace targeted_marketing_display
         //Advertisement Modal Add Button
         protected void addAdv_Click(object sender, EventArgs e)
         {
-            foreach (GridViewRow row in gvBb.Rows)
-            {
-                CheckBox chkBx = (CheckBox)row.FindControl("RowSelectorBB");
-                // CheckBox chkrw = (CheckBox)row.FindControl("CheckBox1");
-
-                if (chkBx.Checked == true)
-                {
-                    chkBx.Checked = false;
-                }
-            }
+            //foreach (GridViewRow row in gvBb.Rows)
+            //{
+            //    CheckBox chkBx = (CheckBox)row.FindControl("RowSelectorBB");
+            //    // CheckBox chkrw = (CheckBox)row.FindControl("CheckBox1");
+            //    if (chkBx.Checked == true)
+            //    {
+            //        chkBx.Checked = false;
+            //    }
+            //}
             string modalId = "Adv";
             Session["modalId"] = modalId;
             SqlConnection conn = null;
-            //SqlDataReader reader = null;
-            //string[] store=new String[5];
             List<string> store = new List<string>();
 
             conn = new
@@ -389,14 +386,13 @@ namespace targeted_marketing_display
         //Billboard Modal Add Button
         protected void addBb_Click(object sender, EventArgs e)
         {
- 
             foreach (GridViewRow row in gvAdv.Rows)
             {
-                CheckBox chkBx = (CheckBox)row.FindControl("RowSelectorADV");
+                CheckBox chkrw = (CheckBox)row.FindControl("RowSelectorADV");
                 //CheckBox chkrw = (CheckBox)row.FindControl("CheckBox1");
-                if (chkBx.Checked == true)
+                if (chkrw.Checked == true)
                 {
-                    chkBx.Checked = true;
+                    chkrw.Checked = true;
                 }
             }
             string modalId = "Bb";
@@ -417,6 +413,7 @@ namespace targeted_marketing_display
             }
             string strRes = String.Join(", ", storeBb);
             billboardTB.Text = strRes;
+            ChartSelectDiv.Visible = true;
         }
 
         //Chart Type Radio Buttons
