@@ -235,6 +235,7 @@
                             <asp:AsyncPostBackTrigger ControlID="addAdv" EventName="Click" />
                         </Triggers>
                         </asp:UpdatePanel>
+                    </div>
 
                         <!-- Advertisement Modal -->
                         <div id="AdvModal" class="modal fade" role="dialog">
@@ -250,21 +251,17 @@
                                         <div class="input-group custom-search-form" style="width: 50%">
                                             <asp:textbox id="txtAdv" class="form-control" runat="server" placeholder="Search..."></asp:textbox>
                                             <span class="input-group-btn">
-                                                <%--<button class="btn btn-default" runat="server" type="button" onserverclick="btnAdvSearch_OnClick">
-                                                    <i class="fa fa-search"></i>
-                                                </button>--%>
                                                 <asp:LinkButton runat="server" class="btn btn-default" ID="btnRun" style="height:34px;" Text="<i class='fa fa-search'></i>" OnClick="btnAdvSearch_OnClick" CausesValidation="false"/>                        
                                             </span>
                                         </div>
 
-                                        <asp:UpdatePanel  ID="updatepanel27" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true" >
+                                        <asp:UpdatePanel ID="updatepanel27" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true" >
                                             <ContentTemplate>
-                                            <asp:GridView ID="gvAdv" runat="server" Visible="true" Style="margin-top: 5px;" AutoGenerateColumns="False" 
-                                            CssClass="table table-bordered table-striped table-hover" OnRowDataBound="gvAdv_RowDataBound"
-                                            AllowPaging="true" overflow="scroll" PageSize="5" ForeColor="Black" GridLines="Vertical" Height="100%" Width="100%"
-                                            BackColor="White" BorderColor="#999999" BorderStyle="Solid"
-                                            BorderWidth="1px" CellPadding="3"  OnPageIndexChanging="gvAdv_PageIndexChanging" OnSorting="gvAdv_Sorting">
-                                            <AlternatingRowStyle BackColor="#CCCCCC" />
+                                                <asp:GridView ID="gvAdv" runat="server" Visible="true" AutoGenerateColumns="False" CssClass="table table-bordered table-striped table-hover" OnRowDataBound="gvAdv_RowDataBound"
+                                                AllowPaging="false" ForeColor="Black" GridLines="Vertical" Height="100%" Width="100%"
+                                                BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" 
+                                                OnPageIndexChanging="gvAdv_PageIndexChanging" OnSorting="gvAdv_Sorting"  >
+                                                <AlternatingRowStyle BackColor="#CCCCCC" />
                                             <Columns>
                                             <asp:TemplateField>
                                                 <ItemTemplate>
@@ -313,7 +310,7 @@
 
                                             <FooterStyle BackColor="#CCCCCC" />
                                             <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" Wrap="False" />
-                                            <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Left" />
+                                            <PagerStyle backcolor="#999999" forecolor="black" horizontalalign="left" />
                                             <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
                                             <SortedAscendingCellStyle BackColor="#F1F1F1" HorizontalAlign="Center" />
                                             <SortedAscendingHeaderStyle BackColor="#808080" HorizontalAlign="Center" />
@@ -337,7 +334,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
                 <div class="col-lg-6">
                     <div class="form-group">
@@ -355,7 +351,7 @@
                         </Triggers>
                         </asp:UpdatePanel>
                     </div>
-                </div>
+                
 
                 <!-- Billboard Modal -->
                 <div id="BbModal" class="modal" role="dialog">
@@ -426,8 +422,9 @@
                     </div>
                     </div>
                 </div>
+                </div>
             </div>
-
+ 
             <div class="row">
                 <div class="col-lg-6" id="ChartSelectDiv" runat="server">
                     <div class="form-group" >

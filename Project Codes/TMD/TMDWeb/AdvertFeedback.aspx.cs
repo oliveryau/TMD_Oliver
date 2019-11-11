@@ -220,7 +220,7 @@ namespace targeted_marketing_display
             gvAdv.DataSource = adv;
             gvAdv.DataBind();
 
-            gvAdv.Visible = true;
+            gvAdv.Visible = false;
             gvAdv.PageIndex = e.NewPageIndex;
             gvAdv.DataBind();
         }
